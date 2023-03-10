@@ -21,6 +21,18 @@ def ceasar_cipher(text,shift_number):
             result += chr((ord(character) + shift_number-97) % 26 + 97)
     return result
 
+def affine_cipher(text, shift_number, multiplier):
+    result = ""
+    for character in text:
+        if not character.isalpha():
+            result += character
+        elif (character.isupper()):
+            result += chr((multiplier * ord(character) + shift_number-65) % 26 + 65)
+        else:
+            result += chr((multiplier * ord(character) + shift_number-65) % 26 + 97)
+    return result
+    
+
 if args.ceasar:
     if args.encrypt:
         print('Ceasar cipher')
@@ -51,4 +63,18 @@ if args.ceasar:
                 print('Decrypted text saved to decrypt.txt')
 
 if args.affine:
-    print('Affine cipher', args.affine, type(args.affine))
+    if args.encrypt:
+        print('Affine cipher')
+        
+        with open('plain.txt') as plain:
+                text = plain.readline()
+
+                with open('crypto.txt', 'w') as encrypted:
+                    with open('key.txt') as key:
+                        key = key.readline()
+                        key = key.strip().split(' ')
+                        if not key[0].isnumeric() or not key[1].isnumeric():
+                            print('Error: Key must be an integer')
+                            sys.exit()
+                    encrypted.write(affine_cipher(text, int(key[0]), int(key[1])))
+                    print('Encrypted text saved to crypto.txt')
