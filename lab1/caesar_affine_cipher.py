@@ -22,7 +22,13 @@ def ceasar_cipher(text,shift_number):
             result += chr((ord(character) + shift_number-97) % 26 + 97)
     return result
 
-def affine_cipher(text, shift_number, multiplier):
+def affine_cipher(text, multiplier, shift_number):
+    if multiplier < 1 or multiplier > 25:
+        print('Error: Multiplier must be between 1 and 26')
+        sys.exit()
+    if shift_number < 0 or shift_number > 25:
+        print('Error: Shift number must be between 0 and 26')
+        sys.exit()
     result = ""
     for character in text:
         if not character.isalpha():
@@ -64,8 +70,13 @@ if args.ceasar:
                 with open('key.txt') as key:
                     key = key.readline()
                     key = key.strip().split(' ')
-                decrypted.write(ceasar_cipher(text, int(key[0]) * -1))
-                print('Decrypted text saved to decrypt.txt')
+                    if key[0].strip() == "":
+                        for i in range(1, 26):
+                            decrypted.write(ceasar_cipher(text, i))
+                            decrypted.write('\n')
+                    else:
+                        decrypted.write(ceasar_cipher(text, int(key[0]) * -1))
+                        print('Decrypted text saved to decrypt.txt')
 
 if args.affine:
     if args.encrypt:
@@ -83,3 +94,18 @@ if args.affine:
                             sys.exit()
                     encrypted.write(affine_cipher(text, int(key[0]), int(key[1])))
                     print('Encrypted text saved to crypto.txt')
+    if args.decrypt:
+        print("Affine cipher")
+
+        with open('crypto.txt') as f:
+            text = f.readline()
+
+            with open('decrypt.txt', 'w') as decrypted:
+                with open('key.txt') as key:
+                    key = key.readline()
+                    key = key.strip().split(' ')
+                    if not key[0].isnumeric() or not key[1].isnumeric():
+                        print('Error: Key must be an integer')
+                        sys.exit()
+                # decrypted.write(affine_cipher(text, int(key[0]) * -1, int(key[1])))
+                print('Decrypted text saved to decrypt.txt')
