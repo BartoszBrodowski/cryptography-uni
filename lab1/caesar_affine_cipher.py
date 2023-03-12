@@ -1,5 +1,6 @@
 import sys
 import argparse
+import math
 
 parser = argparse.ArgumentParser(description='Script to encrypt and decrypt text using Ceasar cipher and Affine cipher')
 
@@ -27,9 +28,13 @@ def affine_cipher(text, shift_number, multiplier):
         if not character.isalpha():
             result += character
         elif (character.isupper()):
-            result += chr((multiplier * ord(character) + shift_number-65) % 26 + 65)
+            humanized_number = ord(character) - 65
+            formula = (humanized_number * multiplier + shift_number) % 26
+            result += chr(formula + 65)
         else:
-            result += chr((multiplier * ord(character) + shift_number-65) % 26 + 97)
+            humanized_number = ord(character) - 97
+            formula = (humanized_number * multiplier + shift_number) % 26
+            result += chr(formula + 97)
     return result
     
 
