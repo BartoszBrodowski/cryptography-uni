@@ -1,3 +1,5 @@
+# Bartosz Brodowski
+
 import sys
 import argparse
 import math
