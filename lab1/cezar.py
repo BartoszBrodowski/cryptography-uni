@@ -2,8 +2,6 @@
 
 import sys
 import argparse
-import math
-
 
 parser = argparse.ArgumentParser(description='Script to encrypt and decrypt text using Ceasar cipher and Affine cipher')
 
@@ -19,12 +17,10 @@ args = parser.parse_args()
 
 # Helper functions
 
-def nwd(a, b):
+def gcd(a, b):
     while b != 0:
         a, b = b, a % b
     return a
-
-# For the inverse of a (multiplier) in affine_cipher
 
 def ceasar_cipher(text,shift_number):
     result = ""
@@ -108,6 +104,22 @@ if args.ceasar:
                         sys.exit()
                     decrypted.write(ceasar_cipher(text, int(key[0]) * -1))
                     print('Decrypted text saved to decrypt.txt')
+
+    elif args.cryptoplain:
+        print("Ceasar cipher")
+        with open('crypto.txt') as encrypted:
+            with open('extra.txt') as extra:
+                encrypted_text = encrypted.readline().strip()
+                extra_text = extra.readline().strip()
+                for key in range(26):
+                    decrypted_text = ceasar_cipher(encrypted_text, key * -1)
+                    if decrypted_text.startswith(extra_text):
+                        with open('key-found.txt', 'w') as key_found:
+                            key_found.write(str(key))
+                            with open('decrypt.txt', 'w') as decrypted:
+                                decrypted.write(decrypted_text)
+                                break
+
     elif args.cryptonoplain:
         print('Ceasar cipher')
         with open('crypto.txt') as f:
@@ -116,19 +128,7 @@ if args.ceasar:
                 for i in range(1, 26):
                     decrypted.write(ceasar_cipher(text, i))
                     decrypted.write('\n')
-# if key[0].strip() == "":
-    # with open('crypto.txt', 'r') as crypto:
-    #     encrypted_text = crypto.readline()
-    #     if encrypted_text != "":
-    #         diff = ord(text[0]) - ord(encrypted_text[0])
-    #         decrypted.write(ceasar_cipher(text, diff * -1))
-    #         decrypted.write('\n')
-    #     else:
-    #         print('Error: No text to decrypt')
-    #         sys.exit()
-    # for i in range(1, 26):
-    #     decrypted.write(ceasar_cipher(text, i))
-    #     decrypted.write('\n')
+
 if args.affine:
     if args.encrypt:
         print('Affine cipher')
@@ -161,6 +161,29 @@ if args.affine:
                     else:
                         decrypted.write(affine_cipher_decrypt(text, int(key[0]), int(key[1])))
                         print('Decrypted text saved to decrypt.txt')
+
+    if args.cryptoplain:
+        print("Affine cipher")
+        with open('crypto.txt', 'r') as encrypted:
+            with open('extra.txt') as extra:
+                extra_text = extra.readline().strip()
+                encrypted_text = encrypted.read().strip()
+                found = False
+                for a in range(1, 27):
+                    if gcd(a, 26) != 1:
+                        continue
+                    for b in range(26):
+                        decrypted_text = affine_cipher_decrypt(encrypted_text, a, b)
+                        if decrypted_text.startswith(extra_text):
+                            with open('key-found.txt', 'w') as key_found:
+                                key_found.write(f'{a} {b}')
+                                with open('decrypt.txt', 'w') as decrypted:
+                                    decrypted.write(decrypted_text)
+                                    found = True
+                                    break
+                    if found:
+                        break
+
     if args.cryptonoplain:
         print("Affine cipher")
         with open('crypto.txt') as f:
