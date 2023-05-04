@@ -1,49 +1,35 @@
 md5:
 2f5b01b10e80bb4c4c197864adda54d7
 1799d1f7e8b9d9fa6294fee06a949eca
-59 bit(s) different
-
-184.375% different
+Liczba rozniacych sie bitow: 69 z 128, procentowo 54%
 
 sha1:
 f7ecd456c26ec17d3dc59aa38537ccefdeb184be
 066846e65a4eaae1a92005c803d822b0a053886d
-84 bit(s) different
-
-210.0% different
+Liczba rozniacych sie bitow: 76 z 160, procentowo 47%
 
 sha224:
 49890268463af765dc52a1d1fb5dac97fe26ce5286eb2dbf48f5071c
 407f6f29b13d0adf71688d5838a4a04569dfceb669cfbac79130443a
-116 bit(s) different
-
-207.14285714285717% different
+Liczba rozniacych sie bitow: 108 z 224, procentowo 48%
 
 sha256:
 a7c59413f064af4a455b6b9f48ff6d8d4a142099980912b81e0bcc605f528f7c
 cf631096f01637626a99fdce8e875281f9d91c2e2f3eea5ef968078ca715e2d7
-132 bit(s) different
-
-206.25% different
+Liczba rozniacych sie bitow: 124 z 256, procentowo 48%
 
 sha384:
 746231f88128a4329aafaabbd27f4f1e8eb5623d130c15542b045f50965179efcebe53d14a3dcb711aa6d85821c9e48f
 de843d6cdd2a26599e027c5e78920f710a7bda899097574841607318161fbe606f6ba1eb400022bc4f8fff5a22782479
-174 bit(s) different
-
-181.25% different
+Liczba rozniacych sie bitow: 210 z 384, procentowo 54%
 
 sha512:
 152b4d17cb727113a90de8a97871e7445a7a782e8bf34496d9804f5c7e2ec474c0705da9753bccbfb1d09e35c65c7a5e2bc81ab5e71253cf1cd7d5c60fb07bf9
 2bf860db9a90e4e65968c5c7f3c46c1e726b55def173649b8b7d91780f921cca11b12843b90166a43429a868ba29c989ae4e2ed29210befc8a2234b3c1940a49
-263 bit(s) different
-
-205.46875% different
+Liczba rozniacych sie bitow: 249 z 512, procentowo 49%
 
 b2sum:
 3fa82e1e7b50106ff613b4f8181668b493b4a594634422e94a1883e0a1f8d197392aeb6bf756f31cc5ffe684b43bad030182946df525fa7ca45c8f1d8f1468b5
 a405c442b0725278521018b6b756c9d86dee7a37fb785d79aedfc5699c6250cb84da80dec12740e2364cc3a1909e3df70b225d2fdd54cc08f8062c6ca0010d73
-253 bit(s) different
-
-197.65625% different
+Liczba rozniacych sie bitow: 259 z 512, procentowo 51%
 

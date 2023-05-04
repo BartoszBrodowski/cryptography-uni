@@ -32,14 +32,25 @@ def count_different_bits(hash_pairs):
         diff_counts.append((name, count))
     return diff_counts
 
+def count_bits_difference(hash1, hash2):
+    different_bits_amount = 0
+    for char in range(len(hash1)):
+        binary_value1 = bin(int(hash1[char], 16))[2:].zfill(4)
+        binary_value2 = bin(int(hash2[char], 16))[2:].zfill(4)
+        for i in range(4):
+            if binary_value1[i] == binary_value2[i]:
+                different_bits_amount += 1
+
+    return different_bits_amount
+
 def write_results_to_file(results, hash_pairs):
     with open('diff.txt', 'w') as f:
         for i in range(len(hash_pairs)):
             f.write(f'{results[i][0]}:\n')
             f.write(f'{hash_pairs[i][1][0]}\n')
             f.write(f'{hash_pairs[i][1][1]}\n')
-            f.write(f'{results[i][1]} bit(s) different\n\n')
-            f.write(f'{results[i][1] / len(hash_pairs[i][1][0]) * 100}% different\n\n')
+            bits_difference = count_bits_difference(hash_pairs[i][1][0], hash_pairs[i][1][1])
+            f.write(f'Liczba rozniacych sie bitow: {bits_difference} z {len(hash_pairs[i][1][0]) * 4}, procentowo {str(100 - round(len(hash_pairs[i][1][0]) / bits_difference * 100, 0))[:-2]}%\n\n')
 
 file1 = 'personal.txt'
 file2 = 'personal_.txt'
