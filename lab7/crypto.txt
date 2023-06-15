@@ -1,0 +1,3 @@
+Klucz 0x4DB19F11.asc należy do Tadeusza Żeleńskiego, data utworzenia 2009-12-31, bez daty końca
+
+Klucz 0xBA104134.asc należy do Andrzeja Bożyszkowskiego, data utworzenia 2023-05-31, data końca 2023-06-30
